@@ -6,26 +6,28 @@
 </head>
 <body>
   <div id="app">
+    <input type="text" v-model.number='age'>
+    <input type="text" v-model.trim='info'>
+    <input type="text" v-model.lazy='msg'>
     <div>{{msg}}</div>
-    <input type="text" v-bind:value="msg" v-on:input='handle'>
-    <input type="text" v-bind:value="msg" v-on:input='msg=$event.target.value'>
-    <input type="text" v-model='msg'>
+    <button @click='handle'>点击</button>
   </div>
   <script type="text/javascript" src="js/vue.js"></script>
   <script type="text/javascript">
     /*
-      v-model指令的本质
-
+      表单域修饰符
     */
     var vm = new Vue({
       el: '#app',
       data: {
-        msg: 'hello'
+        age: '',
+        info: '',
+        msg: ''
       },
       methods: {
-        handle: function(event){
-          // 使用输入域中的最新的数据覆盖原来的数据
-          this.msg = event.target.value;
+        handle: function(){
+          // console.log(this.age + 13)
+          // console.log(this.info.length)
         }
       }
     });

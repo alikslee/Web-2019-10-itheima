@@ -6,24 +6,30 @@
 </head>
 <body>
   <div id="app">
-    <a v-bind:href="url">百度</a>
-    <a :href="url">百度1</a>
-    <button v-on:click='handle'>切换</button>
+    <input type="text" v-color='msg'>
   </div>
   <script type="text/javascript" src="js/vue.js"></script>
   <script type="text/javascript">
     /*
-      属性绑定
+      自定义指令-带参数
     */
+    Vue.directive('color', {
+      bind: function(el, binding){
+        // 根据指令的参数设置背景色
+        // console.log(binding.value.color)
+        el.style.backgroundColor = binding.value.color;
+      }
+    });
     var vm = new Vue({
       el: '#app',
       data: {
-        url: 'http://www.baidu.com'
+        msg: {
+          color: 'blue'
+        }
       },
       methods: {
         handle: function(){
-          // 修改URL地址
-          this.url = 'http://itcast.cn';
+          
         }
       }
     });
